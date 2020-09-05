@@ -1,5 +1,6 @@
 package com.example.notifications;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -22,8 +23,9 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         NotificationCompat.Builder noBuilder = new NotificationCompat.Builder(this);
+        RemoteMessage.Notification notification = remoteMessage.getNotification();
         noBuilder.setContentTitle("FCM NOTIFICATION");
-        noBuilder.setContentText(remoteMessage.getNotification().getBody());
+        noBuilder.setContentText(notification.getBody());
         noBuilder.setAutoCancel(true);
         noBuilder.setSmallIcon(R.drawable.alien);
         noBuilder.setContentIntent(pendingIntent);
