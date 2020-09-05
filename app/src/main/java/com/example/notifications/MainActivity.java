@@ -1,6 +1,5 @@
 package com.example.notifications;
 
-import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,8 +22,6 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
-import java.util.HashMap;
-
 import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,12 +36,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        HashMap<Integer, String> levelToMsg = new HashMap<>();
-        levelToMsg.put(NotificationManager.IMPORTANCE_MIN, "MIN-IMPORTANCE");
-        levelToMsg.put(NotificationManager.IMPORTANCE_NONE, "NONE-IMPORTANCE");
-        levelToMsg.put(NotificationManager.IMPORTANCE_DEFAULT, "DEFAULT-IMPORTANCE");
-        levelToMsg.put(NotificationManager.IMPORTANCE_HIGH, "HIGH-IMPORTANCE");
-        levelToMsg.put(NotificationManager.IMPORTANCE_MAX, "MAX-IMPORTANCE");
 
         txt = findViewById(R.id.textView);
         mAuth = FirebaseAuth.getInstance();
