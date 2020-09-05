@@ -9,5 +9,5 @@ dependencies {
     implementation "org.slf4j:slf4j-simple:1.7.9"
 }
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"

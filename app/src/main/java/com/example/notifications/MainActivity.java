@@ -1,7 +1,6 @@
 package com.example.notifications;
 
 import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,15 +22,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+
+import java.util.HashMap;
+
 import static android.content.ContentValues.TAG;
 
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.util.HashMap;
-import java.util.Random;
-
 public class MainActivity extends AppCompatActivity {
-    NotificationsHandler notificationsHandler;
     TextView txt;
     private EditText emailTxt;
     private EditText passwordTex;
@@ -50,11 +46,6 @@ public class MainActivity extends AppCompatActivity {
         levelToMsg.put(NotificationManager.IMPORTANCE_HIGH, "HIGH-IMPORTANCE");
         levelToMsg.put(NotificationManager.IMPORTANCE_MAX, "MAX-IMPORTANCE");
 
-        notificationsHandler = new NotificationsHandler(levelToMsg,
-                "myChannelID",
-                "myChannelName",
-                "channelDescription",
-                this);
         txt = findViewById(R.id.textView);
         mAuth = FirebaseAuth.getInstance();
         progressBar = findViewById(R.id.progressBar);
@@ -72,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<InstanceIdResult> task) {
                 if (task.isSuccessful()) {
                     String token = task.getResult().getToken();
-                   txt.setText(token);
+                    txt.setText(token);
                 } else {
                     txt.setText(task.getException().toString());
                 }
@@ -149,10 +140,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private void displayNotification() {
-        Random rnd = new Random();
-        notificationsHandler.displayNotification(rnd.nextInt(NotificationManager.IMPORTANCE_MAX));
     }
 }
