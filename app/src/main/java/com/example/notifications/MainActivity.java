@@ -1,6 +1,7 @@
 package com.example.notifications;
 
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,6 +25,8 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import static android.content.ContentValues.TAG;
 
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -52,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 "myChannelName",
                 "channelDescription",
                 this);
-//        txt = findViewById(R.id.tx);
+        txt = findViewById(R.id.textView);
         mAuth = FirebaseAuth.getInstance();
         progressBar = findViewById(R.id.progressBar);
         passwordTex = findViewById(R.id.passwordEditText);
@@ -69,9 +72,9 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<InstanceIdResult> task) {
                 if (task.isSuccessful()) {
                     String token = task.getResult().getToken();
-//                   bb txt.setText("Token:" + token);
+                   txt.setText(token);
                 } else {
-//                    txt.setText(task.getException().toString());
+                    txt.setText(task.getException().toString());
                 }
             }
         });
@@ -88,8 +91,7 @@ public class MainActivity extends AppCompatActivity {
                         String token = task.getResult().getToken();
 
                         // Log and toast
-//                        String msg = getString(R.string.msg_token_fmt, token);
-                        Log.d(TAG, "TOKEN IS:" + token);
+                        Log.d(TAG, token);
                         Toast.makeText(MainActivity.this, token, Toast.LENGTH_SHORT).show();
                     }
                 });
