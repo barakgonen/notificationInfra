@@ -1,4 +1,13 @@
-apply plugin: 'java-library'
+apply plugin: "java"
+//apply plugin: 'com.google.gms.google-services'
+
+repositories {
+    google()
+    jcenter()
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -9,5 +18,9 @@ dependencies {
     implementation "org.slf4j:slf4j-simple:1.7.9"
 }
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+buildscript {
+    dependencies {
+//        classpath 'com.google.gms:google-services:4.3.3'
+    }
+}
+

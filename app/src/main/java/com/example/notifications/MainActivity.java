@@ -49,17 +49,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-            @Override
-            public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                if (task.isSuccessful()) {
-                    String token = task.getResult().getToken();
-                    txt.setText(token);
-                } else {
-                    txt.setText(task.getException().toString());
-                }
-            }
-        });
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override
@@ -69,12 +58,14 @@ public class MainActivity extends AppCompatActivity {
                             return;
                         }
 
-                        // Get new Instance ID token
                         String token = task.getResult().getToken();
+                        txt.setText(token);
+                        // Get new Instance ID token
 
                         // Log and toast
                         Log.d(TAG, token);
                         Toast.makeText(MainActivity.this, token, Toast.LENGTH_SHORT).show();
+                        TokenRegistrationHandler.registerToken("barakgg", token);
                     }
                 });
     }
