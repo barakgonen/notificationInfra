@@ -12,11 +12,13 @@
         android:gravity="center"
         android:orientation="vertical"
         android:padding="16dp">
+
         <EditText
-            android:id="@+id/textView"
+            android:id="@+id/userName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:hint="userName"
+            />
         <EditText
             android:id="@+id/mailEditText"
             android:layout_width="match_parent"
